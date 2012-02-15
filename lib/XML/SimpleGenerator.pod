@@ -68,6 +68,16 @@ XML <http://www.w3.org/TR/xml>.
 
 XML Namespaces <http://www.w3.org/TR/xml-names>.
 
+=head1 HISTORY
+
+=over 4
+
+=item 2012-02-15
+
+Packaged.
+
+=back
+
 =head1 AUTHOR
 
 Wakaba <wakabatan@hatena.ne.jp>.

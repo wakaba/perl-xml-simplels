@@ -1,0 +1,17 @@
+{
+    main_module_name => 'XML::SimpleGenerator',
+    file_names => [qw(
+        lib/XML/SimpleGenerator.pm
+        lib/XML/SimpleGenerator.pod
+        t/xml-simplegenerator.t
+        config/dist/xml-simplegenerator.pi
+    )],
+    req_modules => {
+        
+    },
+    t_req_modules => {
+        'Path::Class' => 0,
+        'Test::Differences' => 0,
+        'Test::Class' => 0,
+    },
+};
