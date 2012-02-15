@@ -22,6 +22,16 @@ sub _serialize : Test(6) {
     }
 }
 
+sub _escaped : Test(3) {
+    my $in = ['el', {hoge => q{a<&"'"b}}, 'c&>"d'];
+    my $r = '';
+    XML::SimpleGenerator->serialize($in, \$r);
+    eq_or_diff $r, q{<el hoge="a&lt;&amp;&quot;'&quot;b">c&amp;&gt;&quot;d</el>};
+    eq_or_diff $in, ['el', {hoge => q{a<&"'"b}}, 'c&>"d'];
+    XML::SimpleGenerator->serialize($in, \$r);
+    eq_or_diff $r, q{<el hoge="a&lt;&amp;&quot;'&quot;b">c&amp;&gt;&quot;d</el><el hoge="a&lt;&amp;&quot;'&quot;b">c&amp;&gt;&quot;d</el>};
+}
+
 __PACKAGE__->runtests;
 
 1;
