@@ -1,0 +1,86 @@
+=head1 NAME
+
+XML::SimpleGenerator - Really simple XML generator
+
+=head1 SYNOPSIS
+
+  use XML::SimpleGenerator;
+  my $buffer = '';
+  my $data = ['svg', {'xml:lang' => 'ja', 'xmlns', $SVG_NS},
+    ['g', {id => 'g1'},
+      ['circle', {cx => 120, cy => 130, r => 61}],
+      ['desc', {}, 'Nemui'],
+    ],
+  ];
+  XML::SimpleGenerator->serialize($data => \$buffer);
+
+=head1 DESCRIPTION
+
+The C<XML::SimpleGenerator> module implements a very simple,
+lightweight XML serializer.  It would be only useful when you only use
+very limited subset of the XML syntax with well known set of input
+such that the serializer don't have to provide complex features such
+as markup declarations and that the serializer can skip strict
+checking of input (e.g. testing of whether the input element name is
+valid against the NCName rule.) to ensure the conformance against the
+XML and XML namespaces specifications.
+
+=head1 METHOD
+
+The module defines a class method: C<serialize>, with two arguments,
+I<$data> and I<$bufferref>.  The first argument, I<$data>, must be the
+serialized data, constructed in the format described below.  The
+second argument, I<$bufferref>, must be a reference to the scalar used
+as the buffer.  The serialized XML document is appended to the buffer
+by the serializer.  Please note that the output is appended as
+character string.  You have to encode them by some character encoding,
+if necessary.
+
+=head1 INPUT DATA STRUCTURE
+
+The input must be an array reference representing an element.  The
+array reference must contain at least an item: the element name.  The
+element name must be a legal XML C<Name>.  The second item, if any,
+must be a hash reference representing the attribute for the element.
+The keys in the hash reference represent the attribute names, and
+therefore they must be legal XML C<Name>s.  The values in the hash
+reference represent the corresponding attribute values.  The attribute
+values must only contain XML C<Char>s.  There may be third and
+subsequent items in the array reference.  They can be zero or more
+sequence of array references representing elements and non-reference
+scalar values representing character data.  They are serialized as the
+children of the element, in order.  The scalar values must only
+contain XML C<Char>s.  Element names, attribute names, attribute
+values, and scalar values are treated as character strings, not as
+byte strings.
+
+The XML declaration, comments, processing instructions, the document
+type declaration, entity references, and CDATA sections are not
+supported.
+
+The serializer is not namespace-aware.  You can still use XML
+namespaces by including namespace prefixes and namespace declaration
+attributes by yourself.
+
+=head1 SEE ALSO
+
+XML <http://www.w3.org/TR/xml>.
+
+XML Namespaces <http://www.w3.org/TR/xml-names>.
+
+=head1 AUTHOR
+
+Wakaba <wakabatan@hatena.ne.jp>.
+
+=head1 ACKNOWLEDGEMENTS
+
+This module has been developed as part of Hatena Haiku 2010 project.
+
+=head1 LICENSE
+
+Copyright 2010-2012 Hatena <http://www.hatena.com/>.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
