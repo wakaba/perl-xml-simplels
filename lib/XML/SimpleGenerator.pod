@@ -68,6 +68,17 @@ XML <http://www.w3.org/TR/xml>.
 
 XML Namespaces <http://www.w3.org/TR/xml-names>.
 
+=head1 DISTRIBUTION
+
+The lastest version of this module is available from the Git
+repository: <https://github.com/wakaba/perl-xml-simplels>.
+
+If you'd like to obtain possibly-outdated package of the module, you
+can find it at
+<http://wakaba.github.com/packages/#perl-xml-simplegenerator>.
+However, use of the latest version in the Git repository is always
+recommended.
+
 =head1 HISTORY
 
 =over 4
